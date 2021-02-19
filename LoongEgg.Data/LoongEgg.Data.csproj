@@ -9,10 +9,19 @@
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
     <PackageReleaseNotes>Enhancement:
 1. add Point, DataSeries, and DataSeriesCollection</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Description>Base type for my WPF Controls</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="LoongEgg.Core" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
   
 </Project>
