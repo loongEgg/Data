@@ -86,5 +86,11 @@ namespace LoongEgg.Data
 
         #endregion
 
+        #region override
+
+        public override string ToString() => $"{{{From}, {To}}}";
+
+        #endregion 
+
     }
 }
