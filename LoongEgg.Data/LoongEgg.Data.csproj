@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.1.1</Version>
+    <Company>LoongEgg</Company>
+    <Authors>LoongEgg</Authors>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <PackageReleaseNotes>Enhancement:
+1. add Point, DataSeries, and DataSeriesCollection</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LoongEgg.Core" Version="1.0.0" />
+  </ItemGroup>
+  
+</Project>
