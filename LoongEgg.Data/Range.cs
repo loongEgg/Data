@@ -40,6 +40,11 @@ namespace LoongEgg.Data
 
         #region ctor
 
+        /// <summary>
+        /// 专门加一个无参构造函数, 方便xaml中初始化
+        /// </summary>
+        public Range() { }
+
         public Range(double from, double to)
         {
             From = from;
