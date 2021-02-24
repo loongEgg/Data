@@ -100,6 +100,6 @@ namespace LoongEgg.Data.Net
         }
         private double _Value;
 
-        private readonly DataSeries DataSeries = new DataSeries();
+        public readonly DataSeries DataSeries = new DataSeries();
     }
 }
