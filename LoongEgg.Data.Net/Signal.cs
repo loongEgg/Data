@@ -9,16 +9,7 @@ namespace LoongEgg.Data.Net
     {
         private static DispatcherTimer Timer;
 
-        public static Range TimeRange
-        {
-            get { return _TimeRange; }
-            private set
-            {
-                if (value == null) return;
-                _TimeRange = value;
-            }
-        }
-        private static Range _TimeRange = new Range(-5, 10);
+        public readonly static Range TimeRange;
 
         public static event TimeStampReloadHandler TimeStampReloaded;
 
@@ -44,6 +35,11 @@ namespace LoongEgg.Data.Net
 
         static Signal()
         {
+            TimeRange = new Range(-10000, 20000);
+            TimeRange.PropertyChanged += (s, e) =>
+            {
+                ResetTimer();
+            };
             ResetTimer();
         }
 
