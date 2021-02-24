@@ -1,10 +1,11 @@
-﻿using System;
+﻿using LoongEgg.Core;
+using System;
 using System.Linq;
 using System.Windows.Threading;
 
 namespace LoongEgg.Data.Net
 {
-    public class Signal : DataSeries
+    public class Signal : BindableObject
     {
         private static DispatcherTimer Timer;
 
@@ -50,9 +51,15 @@ namespace LoongEgg.Data.Net
         {
             TimeStampReloaded += () =>
             {
-                var cache = Items.ToList().Where(p => p.X >= 10000).Select(i => new Point(i.X - 20000, i.Y));
-                Reset(cache);
+                Reset();
             };
+        }
+
+        private void Reset()
+        {
+            var offset = TimeRange.Max + TimeRange.Min;
+            var cache = DataSeries.ToList().Where(p => p.X > offset).Select(i => new Point(i.X + TimeRange.Min, i.Y));
+            DataSeries.Reset(cache);
         }
 
         private static void ResetTimer()
@@ -88,10 +95,11 @@ namespace LoongEgg.Data.Net
             set
             {
                 _Value = value;
-                Add( new Point( TimeStamp, value));
+                DataSeries.Add(new Point(TimeStamp, value));
             }
         }
         private double _Value;
 
+        private readonly DataSeries DataSeries = new DataSeries();
     }
 }
