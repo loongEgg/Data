@@ -67,7 +67,7 @@ namespace LoongEgg.Data.Net
             Timer?.Stop();
             if (TimeTick < 1) return;
             if (TimeRange == null) return;
-            if (TimeRange.Min < -10) TimeRange.From = -10;
+            if (TimeRange.Min < -10000) TimeRange.From = -10000;
             if (TimeRange.Min > 0) TimeRange.From = 0;
 
             if (TimeRange.Max < 0 || TimeRange.Max > 60000) TimeRange.To = 10000;
