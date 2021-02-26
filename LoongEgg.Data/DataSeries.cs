@@ -27,12 +27,7 @@ namespace LoongEgg.Data
         /// <summary>
         /// 分组编号
         /// </summary>
-        public int GroupId => Group == null ? 0 : Group.Id;
-
-        /// <summary>
-        /// 所在组
-        /// </summary>
-        public DataSeriesCollection Group { get; set; }
+        public int GroupId { get; set; }
          
         /// <summary>
         /// 重置为指定的集合

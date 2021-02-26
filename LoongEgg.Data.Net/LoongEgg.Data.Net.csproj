@@ -47,7 +47,9 @@
   <ItemGroup>
     <Compile Include="Signal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignalGroup.cs" />
     <Compile Include="TimeStampReloadHandler.cs" />
+    <Compile Include="TimeStampTickEventHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LoongEgg.Data\LoongEgg.Data.csproj">

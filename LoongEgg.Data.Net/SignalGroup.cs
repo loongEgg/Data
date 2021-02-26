@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace LoongEgg.Data
-{
-    /// <summary>
-    /// 数据系列的集合
-    /// </summary>
-    public class DataSeriesCollection : ObservableCollection<DataSeries>, IDisposable
-    {
-        public readonly static List<DataSeriesCollection> Instances = new List<DataSeriesCollection>();
+namespace LoongEgg.Data.Net
+{ 
 
+    /// <summary>
+    /// <see cref="ObservableCollection{T}"/> of <see cref="Signal"/>
+    /// </summary>
+    public class SignalGroup : ObservableCollection<Signal>, IDisposable
+    {
+        public readonly static List<SignalGroup> Instances = new List<SignalGroup>();
+         
         public Range Xrange
         {
             get;
@@ -25,15 +26,15 @@ namespace LoongEgg.Data
 
         public int Id => this.GetHashCode();
 
-        public DataSeriesCollection()
+        public SignalGroup()
         {
             Instances.Add(this);
-            CollectionChanged += DataSeriesCollection_CollectionChanged;
+            CollectionChanged += SignalGroup_CollectionChanged;
         }
 
-        private void DataSeriesCollection_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void SignalGroup_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            var collection = e.OldItems as IEnumerable<DataSeries>;
+            var collection = e.OldItems as IEnumerable<Signal>;
             if (collection != null)
             {
                 foreach (var item in collection)
@@ -41,7 +42,7 @@ namespace LoongEgg.Data
                     item.GroupId = 0;
                 }
             }
-            collection = e.NewItems as IEnumerable<DataSeries>;
+            collection = e.NewItems as IEnumerable<Signal>;
             if (collection != null)
             {
 
@@ -80,9 +81,25 @@ namespace LoongEgg.Data
             }
         }
 
+        public DataSeriesCollection ToDataSeriesCollection()
+        {
+            var collection = new DataSeriesCollection
+            {
+                Xrange = this.Xrange,
+                Yrange = this.Yrange
+            };
+
+            foreach (var item in Items)
+            {
+                collection.Add(item);
+            }
+
+            return collection;
+        }
+
         #region GC
         private bool _Diposed = false;
-        ~DataSeriesCollection()
+        ~SignalGroup()
         {
             Dispose(false);
         }
